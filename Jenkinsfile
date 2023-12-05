@@ -6,8 +6,10 @@ pipeline {
     stages {
       stage("Build") {
         steps {
-          echo "<--------building the code--------->"
-          sh 'mvn clean install'
+          script {
+            echo "<--------building the code--------->"
+            sh 'mvn clean install'
+          }
         }
       }
     }
