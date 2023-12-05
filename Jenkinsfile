@@ -1,11 +1,13 @@
 pipeline {
   agent agent1
   tools {
-    maven: "maven"
+    maven "maven"
   }
     stages {
-      stage("Build"){
-        echo "<--------building the code--------->"
+      stage("Build") {
+        steps {
+          echo "<--------building the code--------->"
+        }
       }
     }
 }
