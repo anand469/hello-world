@@ -1,24 +1,22 @@
 pipeline {
     agent any
-    stages{
-        stage('Checkout'){
-            steps{
-                script{
-                echo "Clone started"
-                    gitInfo = checkout scm
-               
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    echo "Clone started"
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Code Build') {
+            steps {
+                script {
+                    echo "Building the code"
+                    sh 'mvn install'
+                }
             }
         }
     }
-
-        stage('code build'){
-            stage{
-                script{
-                    echo "building the code"
-                    sh """ mvn install """
-                }
-            }
-        }   
 }
-}
-        
