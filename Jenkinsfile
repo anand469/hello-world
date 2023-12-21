@@ -1,21 +1,32 @@
 pipeline {
-    agent any
+    agent any  // Specify where the pipeline will run
+
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    echo "Clone started"
-                    checkout scm
-                }
+                // Checkout code from version control
+                checkout scm
             }
         }
 
-        stage('Code Build') {
+        stage('Build') {
             steps {
-                script {
-                    echo "Building the code"
-                    sh 'mvn install'
-                }
+                // Execute build commands (e.g., Maven, Gradle)
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run automated tests
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy built artifacts to a target environment
+                echo 'deploy'
             }
         }
     }
