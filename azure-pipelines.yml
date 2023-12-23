@@ -28,4 +28,4 @@ steps:
     azureSubscription: 'Azure subscription 1(86cb9dc5-dfd2-4ad2-8bb1-e77d26d83c5b)'
     appType: 'webAppLinux'
     WebAppName: 'my-app-hello'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.war'
