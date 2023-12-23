@@ -1,8 +1,3 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
 - master
 
@@ -20,15 +15,17 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-    - task: AzureRmWebAppDeployment@4
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'Azure subscription 1(86cb9dc5-dfd2-4ad2-8bb1-e77d26d83c5b)'
-        appType: 'webAppLinux'
-        WebAppName: 'my-app-hello'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(86cb9dc5-dfd2-4ad2-8bb1-e77d26d83c5b)'
+    appType: 'webAppLinux'
+    WebAppName: 'my-app-hello'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
